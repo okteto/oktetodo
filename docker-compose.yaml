@@ -6,6 +6,9 @@ services:
       dockerfile: Dockerfile
     ports:
       - 3000:3000
+    volumes:
+      - ./client:/app
+      - /app/node_modules
 
   backend:
     build:
@@ -15,6 +18,9 @@ services:
       - 5050:5050
     depends_on:
       - database
+    volumes:
+      - ./server:/app
+      - /app/node_modules
 
   database:
     image: postgres
@@ -25,5 +31,8 @@ services:
     ports:
       - 5432:5432
     volumes:
-      - ./data:/var/lib/postgresql/data
+      - pgdata:/var/lib/postgresql/data
       - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+volumes:
+  pgdata:
