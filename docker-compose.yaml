@@ -36,3 +36,12 @@ services:
 
 volumes:
   pgdata:
+
+
+endpoints:
+  - path: /
+    service: frontend
+    port: 3000
+  - path: /todos
+    service: backend
+    port: 5050
