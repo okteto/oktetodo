@@ -5,7 +5,7 @@ services:
       context: ./client
       dockerfile: Dockerfile
     ports:
-      - 3000:3000
+      - 3000
     volumes:
       - ./client:/app
       - /app/node_modules
@@ -15,7 +15,7 @@ services:
       context: ./server
       dockerfile: Dockerfile
     ports:
-      - 5050:5050
+      - 5050
     depends_on:
       - database
     volumes:
