@@ -1,0 +1,56 @@
+name: oktetodo
+
+# The build section defines how to build the images of your development environment
+# More info: https://www.okteto.com/docs/reference/manifest/#build
+build:
+
+  # You can use the following env vars to refer to this image in your deploy commands:
+  #  - OKTETO_BUILD_BACKEND_REGISTRY: image registry
+  #  - OKTETO_BUILD_BACKEND_REPOSITORY: image repo
+  #  - OKTETO_BUILD_BACKEND_IMAGE: image name
+  #  - OKTETO_BUILD_BACKEND_SHA: image tag sha256
+  backend:
+    context: server
+    dockerfile: Dockerfile
+
+  # You can use the following env vars to refer to this image in your deploy commands:
+  #  - OKTETO_BUILD_DATABASE_REGISTRY: image registry
+  #  - OKTETO_BUILD_DATABASE_REPOSITORY: image repo
+  #  - OKTETO_BUILD_DATABASE_IMAGE: image name
+  #  - OKTETO_BUILD_DATABASE_SHA: image tag sha256
+
+  # You can use the following env vars to refer to this image in your deploy commands:
+  #  - OKTETO_BUILD_FRONTEND_REGISTRY: image registry
+  #  - OKTETO_BUILD_FRONTEND_REPOSITORY: image repo
+  #  - OKTETO_BUILD_FRONTEND_IMAGE: image name
+  #  - OKTETO_BUILD_FRONTEND_SHA: image tag sha256
+  frontend:
+    context: client
+    dockerfile: Dockerfile
+
+# The deploy section defines how to deploy your development environment
+# More info: https://www.okteto.com/docs/reference/manifest/#deploy
+deploy:
+  compose:
+    file: docker-compose.yaml
+
+# The dependencies section defines other git repositories to be deployed as part of your development environment
+# More info: https://www.okteto.com/docs/reference/manifest/#dependencies
+# dependencies:
+#   - https://github.com/okteto/sample
+
+
+# The dev section defines how to activate a development container
+# More info: https://www.okteto.com/docs/reference/manifest/#dev
+dev:
+  backend:
+    command: sh
+    sync:
+      - server:/app
+    mode: sync
+  frontend:
+    command: sh
+    sync:
+      - client:/app
+    mode: sync
+
