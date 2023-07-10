@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-deployment
+spec:
+  selector:
+    matchLabels:
+      app: postgres
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      initContainers:
+        - name: init-container
+          image: postgres
+          command: ["sh", "-c", "psql -U postgres -d postgres -c \"SELECT 'CREATE DATABASE todolist' WHERE NOT EXISTS (SELECT FROM pg_database WHERE datname = 'todolist');\" && psql -U postgres -d todolist -c 'CREATE TABLE IF NOT EXISTS todo (todo_id SERIAL PRIMARY KEY, description VARCHAR(255) NOT NULL);'"]
+          volumeMounts:
+            - name: postgres-data
+              mountPath: /var/lib/postgresql/data
+      containers:
+        - name: postgres
+          image: postgres
+          env:
+            - name: POSTGRES_USER
+              value: postgres
+            - name: POSTGRES_PASSWORD
+              value: postgres
+            - name: POSTGRES_DB
+              value: todolist
+          ports:
+            - containerPort: 5432
+          volumeMounts:
+            - name: postgres-data
+              mountPath: /var/lib/postgresql/data
+      volumes:
+        - name: postgres-data
+          emptyDir: {}
