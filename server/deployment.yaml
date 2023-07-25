@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: server-deployment
+  name: server
 spec:
   replicas: 1
   selector:
@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
         - name: server
-          image: your_server_image:tag
+          image: rinkiyakedad/oktetodo-server
           ports:
             - containerPort: 5050
