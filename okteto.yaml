@@ -1,0 +1,4 @@
+deploy:
+- kubectl apply -f db/configmap.yaml
+- kubectl apply -f db/deployment.yaml
+- 
