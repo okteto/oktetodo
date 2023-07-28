@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: client-deployment
+  name: client
 spec:
   replicas: 1
   selector:
@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
         - name: client
-          image: your_client_image:tag
+          image: rinkiyakedad/oktetodo-client
           ports:
             - containerPort: 3000
