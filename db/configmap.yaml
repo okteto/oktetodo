@@ -4,8 +4,7 @@ metadata:
   name: db-init-scripts
 data:
   init.sql: |
-    CREATE DATABASE todolist;
-    WHERE NOT EXISTS (SELECT FROM pg_database WHERE datname = 'todolist');
+    SELECT 'CREATE DATABASE todolist' WHERE NOT EXISTS (SELECT FROM pg_database WHERE datname = 'todolist');
     CREATE TABLE IF NOT EXISTS todo (
       todo_id SERIAL PRIMARY KEY,
       description VARCHAR(255) NOT NULL);
