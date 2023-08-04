@@ -5,7 +5,7 @@ metadata:
 spec:
   ingressClassName: nginx
   rules:
-    - host: todo.app.arsh.okteto.me
+    - host: {{ .Values.url }}
       http:
         paths:
           - path: /todos

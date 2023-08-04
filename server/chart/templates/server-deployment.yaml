@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: server
 spec:
-  replicas: 1
+  replicas: {{ .Values.replicaCount }}
   selector:
     matchLabels:
       app: server
@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
         - name: server
-          image: rinkiyakedad/oktetodo-server
+          image: {{ .Values.image }}
           ports:
             - containerPort: 5050

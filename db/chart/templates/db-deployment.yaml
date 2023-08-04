@@ -1,12 +1,12 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: postgres-deployment
+  name: database
 spec:
   selector:
     matchLabels:
       app: postgres
-  replicas: 1
+  replicas: {{ .Values.replicaCount }}
   template:
     metadata:
       labels:
@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: postgres
-          image: postgres
+          image: {{ .Values.image }}
           env:
             - name: POSTGRES_USER
               value: postgres
