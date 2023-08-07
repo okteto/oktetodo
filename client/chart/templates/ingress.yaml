@@ -2,10 +2,12 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: todo-ingress
+  annotations:
+    dev.okteto.com/generate-host: "true"
 spec:
-  ingressClassName: nginx
+  # ingressClassName: nginx
   rules:
-    - host: {{ .Values.url }}
+    - host:
       http:
         paths:
           - path: /todos

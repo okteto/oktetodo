@@ -1,6 +1,21 @@
+build:
+  server:
+    context: server
+  client:
+    context: client
 deploy:
-- kubectl apply -f db/configmap.yaml
-- kubectl apply -f db/deployment.yaml
-- kubectl apply -f db/service.yaml
-- kubectl apply -f server/deployment.yaml
-- kubectl apply -f server/service.yaml
+  - name: Deploy the DB
+    command: helm upgrade --install db db/chart
+  - name: Deploy the Node.js Backend
+    command: helm upgrade --install server server/chart --set image=${OKTETO_BUILD_SERVER_IMAGE}
+  - name: Deploy the React Frontend
+    command: helm upgrade --install client client/chart --set image=${OKTETO_BUILD_CLIENT_IMAGE}
+dev:
+  server:
+    command: bash
+    sync:
+      - server:/app
+  client:
+    command: npm start
+    sync:
+      - client:/app
