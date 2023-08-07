@@ -19,5 +19,7 @@ RUN npm run build
 # Expose the application port
 EXPOSE 3000
 
+ENV REACT_APP_NAME_COLOR blue
+
 # Serve the built app using a static server
 CMD [ "npm", "start", "—-host", "0.0.0.0"]

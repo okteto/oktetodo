@@ -1,6 +1,11 @@
 // build a react component to input a todo item
 
 import React, { Fragment, useState } from 'react';
+const nameColor = process.env.REACT_APP_NAME_COLOR;
+const blueHeadingStyle = {
+    color: nameColor
+};
+
 
 const InputTodo = () => {
     const [description, setDescription] = useState("");
@@ -21,7 +26,7 @@ const InputTodo = () => {
 
     return (
         <Fragment>
-            <h1 className="text-center mt-5">Oktetodo</h1>
+            <h1 className="text-center mt-5" style={blueHeadingStyle} >Oktetodo</h1>
             <form className="d-flex mt-5" onSubmit={onSubmitForm}>
                 <input type="text" className="form-control" value={description} onChange={e => setDescription(e.target.value)} />
                 <button className="btn btn-success">Add</button>

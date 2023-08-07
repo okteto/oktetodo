@@ -1,3 +1,4 @@
 replicaCount: 1
 image: "rinkiyakedad/oktetodo-client"
 url: "todo.app.arsh.okteto.me"
+color: "red"

@@ -15,5 +15,8 @@ spec:
       containers:
         - name: client
           image: {{ .Values.image }}
+          env:
+            - name: REACT_APP_NAME_COLOR 
+              value: {{ .Values.color }}
           ports:
             - containerPort: 3000

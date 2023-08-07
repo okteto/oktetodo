@@ -9,7 +9,7 @@ deploy:
   - name: Deploy the Node.js Backend
     command: helm upgrade --install server server/chart --set image=${OKTETO_BUILD_SERVER_IMAGE}
   - name: Deploy the React Frontend
-    command: helm upgrade --install client client/chart --set image=${OKTETO_BUILD_CLIENT_IMAGE}
+    command: helm upgrade --install client client/chart --set image=${OKTETO_BUILD_CLIENT_IMAGE} --set color=${TODO_COLOR}
 dev:
   server:
     command: bash
