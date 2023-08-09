@@ -6,3 +6,10 @@ helm upgrade --install db db/chart
 helm upgrade --install server server/chart 
 helm upgrade --install client client/chart 
 ```
+
+Remove the hard coded ingress classname in the `ingress.yaml`. Add the annotation to the ingress to get the endpoints for your application:
+```
+annotations:
+    dev.okteto.com/generate-host: "true"
+```
+Create the `okteto.yaml`.
