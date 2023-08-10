@@ -1,0 +1,19 @@
+build:
+  server:
+    context: server
+  client:
+    context: client
+
+deploy:
+  compose:
+    file: docker-compose.yaml
+
+dev:
+  server:
+    command: ["bash"]
+    sync:
+      - server:/app
+  client:
+    command: npm start
+    sync:
+      - client:/app

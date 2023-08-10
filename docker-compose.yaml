@@ -1,6 +1,6 @@
 version: '3'
 services:
-  frontend:
+  client:
     build:
       context: ./client
       dockerfile: Dockerfile
@@ -10,7 +10,7 @@ services:
       - ./client:/app
       - /app/node_modules
 
-  backend:
+  server:
     build:
       context: ./server
       dockerfile: Dockerfile
@@ -40,8 +40,8 @@ volumes:
 
 endpoints:
   - path: /
-    service: frontend
+    service: client
     port: 3000
   - path: /todos
-    service: backend
+    service: server
     port: 5050
