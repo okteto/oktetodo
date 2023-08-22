@@ -16,6 +16,6 @@ dev:
     sync:
       - server:/app
   client:
-    command: npm start
+    command: bash
     sync:
       - client:/app

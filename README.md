@@ -1,3 +1,9 @@
+# Oktetodo
+
+A todo list application to demonstrate cloud development using Okteto.
+
+## Notes on migrating the app
+
 Now we want to package the application as a Helm chart.
 
 Helm install command:
