@@ -19,3 +19,5 @@ annotations:
     dev.okteto.com/generate-host: "true"
 ```
 Create the `okteto.yaml`.
+
+To build images locally: `docker build -t rinkiyakedad/oktetodo-client --platform=linux/amd64 .`
