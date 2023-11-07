@@ -10,6 +10,13 @@ deploy:
     command: helm upgrade --install server server/chart --set image=${OKTETO_BUILD_SERVER_IMAGE}
   - name: Deploy the React Frontend
     command: helm upgrade --install client client/chart --set image=${OKTETO_BUILD_CLIENT_IMAGE}
+external:
+ docs:
+    icon: okteto
+    notes: README.md
+    endpoints:
+    - name: readme
+      url: https://github.com/okteto/oktetodo/blob/main/README.md
 dev:
   server:
     command: bash
