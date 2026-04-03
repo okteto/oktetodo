@@ -1,2 +1,2 @@
 replicaCount: 1
-image: "postgres"
+image: "postgres:17"
